@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id="showText">
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        // alert("123");
+        var conn;
+
+        function ws() {
+            if (!window.WebSocket) {
+                alert("WebSocket not supported by this browser");
+                return;
+            }
+            var i = 0;
+            conn = new WebSocket('ws://www.test2.hongbeibang.com:5920/ws');
+
+            // 绑定时间
+            // 开
+            conn.onopen = function(evt) {};
+            // 关
+            conn.onclose = function(evt) {};
+            // 读
+            conn.onmessage = function(evt) {
+                $("#showText").append(evt.data + "<br>");
+                conn.send("i have recv one.") // 方法演示
+                i++;
+                console.log(i);
+
+                if (i > 10) {
+                    conn.close();
+                    return;
+                }
+            };
+            // 错误
+            conn.onerror = function(evt) {};
+        }
+        ws();
+    </script>
+</body>
+
+</html>

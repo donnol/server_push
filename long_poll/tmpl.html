@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id="showText">
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        // alert("123");
+        function longpoll() {
+            $.get('http://www.test2.hongbeibang.com:5920/longpoll', {}, function(data) {
+                $("#showText").append(data + "<br>");
+                // alert(data);
+                longpoll(); // 完成请求后，开始下一个请求
+            });
+        }
+        longpoll();
+    </script>
+</body>
+
+</html>
